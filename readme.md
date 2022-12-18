@@ -22,5 +22,18 @@ In the `main()` function demonstrate the usage of all functions. Create a phone 
 ___
 
 `Make sure to avoid any undefined behavior in the program. In case of compilation error, the assignment automatically scores 0 points.`
+___
+
+## Instructions
+Run the following command in the linux terminal line:
+
+1. Random inputs:
+    ```
+    > gcc main.c phonebook.c util.c && ./a.out
+    ```
+2. Manually entered inputs:
+   ```
+    > gcc main.c phonebook.c util.c && ./a.out manually
+   ```
 
 > Solved by: MARTINS Alfredo

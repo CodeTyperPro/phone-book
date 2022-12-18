@@ -1,4 +1,5 @@
 #include "phonebook.h"
+#include "util.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -6,6 +7,7 @@
 
 #define SIZE_NAME 10
 #define SIZE_PHONE_NUMBER 12
+#define SIZE_PHONES 10
 
 char*
 get_random_text_name(){
@@ -39,18 +41,28 @@ get_random_text_number(){
     return str;
 }
 
-int main(){
-    srand(time(NULL));
-    int total = 2;
+int main(int argc, char* argv[]){
 
-    /* === USAGE ===*/
+    if (argc == 2){
+        char instruction[] = "manually";
+        if(strcmp(instruction, argv[2]) == 0){
+            launch_manually();
+        } else{
+            print("Something went wrong! Please, check the parameters or contact support.\n");
+            exit(0);
+        }
+    }
+
+    srand(time(NULL));
+
+    /* === USAGE === */
     phone_book_t phonebook;
 
-    /* === INIT ===*/
-    init(&phonebook, total);
+    /* === INIT === */
+    init(&phonebook, SIZE_PHONES);
 
-    /* === FILL ===*/
-    for (int i = 0; i<total; ++i) {
+    /* === FILL === */
+    for (int i = 0; i<SIZE_PHONES; ++i) {
         
         char* name;
         name = get_random_text_name();
@@ -62,10 +74,10 @@ int main(){
         }
     }
 
-    /* === PRINT ===*/
+    /* === PRINT === */
     print(&phonebook);
 
-    /* === GET ===*/
+    /* === GET === */
     char str[MAX_LEN];
     strcpy(str, phonebook.items_ptr[0].name);
 
@@ -77,14 +89,14 @@ int main(){
         printf("Phone number of %s: %s\n", str, result);
     }
 
-    /* === DUMP ===*/
+    /* === DUMP === */
     char filename[] = "output.dat";
     dump(&phonebook, filename);
 
-    /* === SIZE ===*/
+    /* === SIZE === */
     printf("Size = %lu.\n", size(&phonebook));
 
-    /* === DESTROY ===*/
+    /* === DESTROY === */
     destroy(&phonebook);
 
     return 0;

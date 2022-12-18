@@ -29,11 +29,11 @@ Run the following command in the linux terminal line:
 
 1. Random inputs:
     ```
-    > gcc main.c phonebook.c util.c && ./a.out
+    gcc main.c phonebook.c util.c && ./a.out
     ```
 2. Manually entered inputs:
    ```
-    > gcc main.c phonebook.c util.c && ./a.out manually
+    gcc main.c phonebook.c util.c && ./a.out manually
    ```
 
 > Solved by: MARTINS Alfredo

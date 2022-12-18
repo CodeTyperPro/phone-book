@@ -69,9 +69,19 @@ add(phone_book_t* phonebook){
     char* name;
     scanf("%s", name);
 
+    while(strlen(name) > 30){
+        printf("\n\t\tEnter a name (maximum of 30 letters): ");
+        scanf("%s", name);
+    }
+
     printf("\n\t\tEnter a phone number (maximum of 30 digits or characters): ");
     char* phone_number;
-    scanf("%s", phone_number);
+    scanf("%s", phone_number); 
+    
+    while(strlen(phone_number) > 30){
+        printf("\n\t\tEnter a name (maximum of 30 letters): ");
+        scanf("%s", phone_number);
+    }
 
     if(!insert(&phonebook, name, phone_number)){
         printf("Error inserting %s : %s\n", name, phone_number);

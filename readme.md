@@ -31,9 +31,9 @@ Run the following command in the linux terminal line:
     ```
     gcc main.c phonebook.c util.c && ./a.out
     ```
-2. Manually entered inputs:
-   ```
+3. Manually entered inputs:
+    ```
     gcc main.c phonebook.c util.c && ./a.out manually
-   ```
+    ```
 
 > Solved by: MARTINS Alfredo

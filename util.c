@@ -10,11 +10,12 @@ launch_manually(phone_book_t* phonebook){
 
     printf(":: WELCOME TO PHONE BOOK (MINI) APPLICATION ::\n");
     printf("OPTIONS: \n");
-    printf("\t:: [A] : Add  - Insert new phone ::");
-    printf("\t:: [L] : List - Total number of security guards ::");
-    printf("\t:: [S] : Save - Workplaces with higher number of violent incidents ::");
-    printf("`t:: [E] : Exit - Exist the application ::");
+    printf("\t:: [A] : Add  - Insert new phone ::\n");
+    printf("\t:: [L] : List - Total number of security guards ::\n");
+    printf("\t:: [S] : Save - Workplaces with higher number of violent incidents ::\n");
+    printf("\t:: [E] : Exit - Exist the application ::\n");
 
+    printf("\tEnter the operation: ");
     char option;
     option = getchar();
 
@@ -58,7 +59,6 @@ dismiss(){
     printf("\n\t\tData e tempo: %s\n", ctime(&t));
     printf("\t\tTHANK YOU FOR USING MY PROGRAM :) %s\n", ctime(&time));
     printf("\t\tCopyright© ComSys ELTE 2022, Alfredo Martins (Student) & Dr. Brunner Tibor (Teacher)\n");
-    exit(0);
 }
 
 /* === INSERT PHONE === */

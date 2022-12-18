@@ -8,21 +8,27 @@
 #define DEFAULT_SIZE_PHONES 10
 
 int main(int argc, char* argv[]){
+    /* === USAGE === */
+    phone_book_t phonebook;
 
     if (argc == 2){
         char instruction[] = "manually";
         if(strcmp(instruction, argv[2]) == 0){
-            launch_manually();
+            printf("Enter the number of phones: ");
+            int num_phones;
+
+            scanf("%d", &num_phones);
+            init(&phonebook, num_phones);
+
+            launch_manually(&phonebook);
+            destroy(&phonebook);
             return 0;
         } else{
-            print("Command parameter not recognized! Please, check it or contact support. Good luck in the next run! :)\n");
+            printf("Command parameter not recognized! Please, check it or contact support. Good luck in the next run! :)\n");
         }
     }
 
     srand(time(NULL));
-
-    /* === USAGE === */
-    phone_book_t phonebook;
 
     /* === INIT === */
     init(&phonebook, DEFAULT_SIZE_PHONES);

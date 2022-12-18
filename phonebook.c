@@ -52,7 +52,7 @@ get(const phone_book_t* const phonebook, const char name[]){
 void
 print(const phone_book_t* const phonebook){
     for (size_t i = 0; i < size(phonebook); ++i) {
-        printf("\t\t[%zu] - %s : %s\n", (i + 1), phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);  
+        printf("\t[%zu] - %s : %s\n", (i + 1), phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);  
     }
 }
 
@@ -69,6 +69,7 @@ dump(const phone_book_t* const phonebook, const char file_name[]){
             fseek(output, 0, SEEK_CUR);
         }
 
+        printf("\nData saved sucessfully. Please, check the file called \"%s\" in the current directory! :) \n", file_name);
         fclose(output);
     }
 }

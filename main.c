@@ -47,18 +47,21 @@ int main(int argc, char* argv[]){
     }
 
     /* === PRINT === */
+    printf("List of phones: \n");
     print(&phonebook);
 
     /* === GET === */
     char str[MAX_LEN];
-    strcpy(str, phonebook.items_ptr[0].name);
+    int pos; 
+    pos = rand()%size(&phonebook);
+    strcpy(str, phonebook.items_ptr[pos].name);
 
     const char* result;
     result = get(&phonebook, str);
     if (result == NULL) {
-        printf("Phone name not found.\n");
+        printf("\nPhone name not found.\n");
     } else {
-        printf("Phone number of %s: %s\n", str, result);
+        printf("\nPhone number of \"%s\" at position [%d]: %s.\n", str,  (pos + 1), result);
     }
 
     /* === DUMP === */
@@ -66,7 +69,7 @@ int main(int argc, char* argv[]){
     dump(&phonebook, filename);
 
     /* === SIZE === */
-    printf("Size = %lu.\n", size(&phonebook));
+    printf("\nTotal number of phones = %lu.\n", size(&phonebook));
 
     /* === DESTROY === */
     destroy(&phonebook);

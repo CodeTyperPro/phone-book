@@ -4,6 +4,9 @@
 #define SIZE_NAME 10
 #define SIZE_PHONE_NUMBER 12
 
+#include "phonebook.h"
+
+
 /* === START POINT === */
 void  launch_manually(phone_book_t* phonebook);
 
@@ -11,8 +14,8 @@ void  launch_manually(phone_book_t* phonebook);
 void  header();
 void  dismiss();
 void  add(phone_book_t* phonebook);
-void  list(const phone_book_t* const phonebook);
-void  save(const phone_book_t* const phonebook);
+void  list(phone_book_t* phonebook);
+void  save(phone_book_t* phonebook);
 
 /* === AUXILIARY FUNCTIONS === */
 char* get_random_text_name();

@@ -1,7 +1,9 @@
 #include "util.h"
-#include "phonebook.h"
 
 #include <time.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* === START UP OF THE APPLICATION === */
 void
@@ -43,9 +45,7 @@ launch_manually(phone_book_t* phonebook){
 void 
 header(){
     // if define on linux and mac
-    system("cls");
-    printf("\n");
-    printf("\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb PHONE BOOK \xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
+    printf("\n\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb PHONE BOOK \xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
     printf("=================================================\n");
     printf("Student: MARTINS Alfredo | HEIOPO\n");
     printf("==================================================\n");
@@ -54,10 +54,9 @@ header(){
 /* === GOODBYE MESSAGE AND RECOGNITION === */
 void 
 dismiss(){
-    time_t t;
-    time(&t);
-    printf("\n\t\tData e tempo: %s\n", ctime(&t));
-    printf("\t\tTHANK YOU FOR USING MY PROGRAM :) %s\n", ctime(&time));
+    time_t curtime;
+    time(&curtime);
+    printf("\t\tTHANK YOU FOR USING MY PROGRAM :) %s\n", ctime(&curtime));
     printf("\t\tCopyright© ComSys ELTE 2022, Alfredo Martins (Student) & Dr. Brunner Tibor (Teacher)\n");
 }
 
@@ -83,18 +82,18 @@ add(phone_book_t* phonebook){
         scanf("%s", phone_number);
     }
 
-    if(!insert(&phonebook, name, phone_number)){
+    if(!insert(phonebook, name, phone_number)){
         printf("Error inserting %s : %s\n", name, phone_number);
     } else{
-        print("\nPhone inserted sucessfully!\n");
+        printf("\nPhone inserted sucessfully!\n");
         launch_manually(phonebook);
     }
 }
 
 /* === LIST ALL THE PHONE ===*/
 void  
-list(const phone_book_t* const phonebook){
-    print(":: LIST PHONE BOOK ::");
+list(phone_book_t* phonebook){
+    printf(":: LIST PHONE BOOK ::");
     print(phonebook);
 
     launch_manually(phonebook); /* Go back to the menu */
@@ -102,10 +101,9 @@ list(const phone_book_t* const phonebook){
 
 /* === SAVE THE LIST IN A DEFAULT FILE CALLED "output.dat" ===*/
 void  
-save(const phone_book_t* const phonebook){
-    char filename[] = "output.dat";
-    dump(phonebook, filename);
-    printf("\nData saved sucessfully. Please, check a file called %s in the current directory! :) \n", filename);
+save(phone_book_t* phonebook){
+    char file_name[] = "output.dat";
+    dump(phonebook, file_name);
 
     launch_manually(phonebook); /* Go back to the menu */
 }

@@ -15,6 +15,7 @@ launch_manually(phone_book_t* phonebook){
     printf("OPTIONS: \n");
     printf("\t:: [A] => Add  - Insert new phone ::\n");
     printf("\t:: [L] => List - List all the phones ::\n");
+    printf("\t:: [F] => Find - Search the phone number of a given name ::\n");
     printf("\t:: [S] => Save - Save the phones in a text file ::\n");
     printf("\t:: [E] => Exit - Exit the application ::\n");
 
@@ -31,6 +32,9 @@ launch_manually(phone_book_t* phonebook){
         case 'L':
             list(phonebook);
             break;
+        case 'F':
+            search(phonebook);
+            break;
         case 'S':
             save(phonebook);
             break;
@@ -45,7 +49,7 @@ launch_manually(phone_book_t* phonebook){
 }
 
 /* === PRINT NICE HEADER :) === */
-void 
+void
 header(){
     // if define on linux and mac
     printf("\n\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb PHONE BOOK \xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
@@ -55,7 +59,7 @@ header(){
 }
 
 /* === GOODBYE MESSAGE AND RECOGNITION === */
-void 
+void
 dismiss(){
     time_t curtime;
     time(&curtime);
@@ -107,12 +111,13 @@ add(phone_book_t* phonebook){
         printf("Error inserting %s : %s\n", name, phone_number);
     } else{
         printf("\nPhone inserted sucessfully!\n");
-        launch_manually(phonebook);
     }
+    
+    launch_manually(phonebook);
 }
 
 /* === LIST ALL THE PHONE ===*/
-void  
+void
 list(phone_book_t* phonebook){
     printf("\n:: LIST PHONE BOOK ::\n\n");
     print(phonebook);
@@ -120,8 +125,35 @@ list(phone_book_t* phonebook){
     launch_manually(phonebook); /* Go back to the menu */
 }
 
+/* === SEARCH FOR A PHONE NUMBER OF A GIVEN NAME ===*/
+void
+search(phone_book_t* phonebook){
+    printf("\n:: SEARCH OF A PHONE NUMBER'S NAME ::\n\n");
+    
+    print(phonebook);
+
+    printf("\nEnter a name (maximum of 30 digits or characters): ");
+    char name[256];
+    char c;
+    size_t index = 0;
+    while ((c = getchar()) != '\n') {
+        name[index++] = c;
+    }
+
+    name[index] = '\0';
+    const char* result;
+    result = get(phonebook, name);
+    if (result == NULL) {
+        printf("\nPhone name not found.\n");
+    } else {
+        printf("\nPhone number of \"%s\": %s.\n", name, result);
+    }
+
+    launch_manually(phonebook); /* Go back to the menu */
+}
+
 /* === SAVE THE LIST IN A DEFAULT FILE CALLED "output.dat" ===*/
-void  
+void
 save(phone_book_t* phonebook){
     char file_name[] = "output.dat";
     dump(phonebook, file_name);

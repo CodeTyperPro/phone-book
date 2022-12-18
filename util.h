@@ -16,6 +16,7 @@ void  header();
 void  dismiss();
 void  add(phone_book_t* phonebook);
 void  list(phone_book_t* phonebook);
+void  search(phone_book_t* phonebook);
 void  save(phone_book_t* phonebook);
 
 /* === AUXILIARY FUNCTIONS === */

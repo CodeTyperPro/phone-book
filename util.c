@@ -1,10 +1,11 @@
 #include "util.h"
+#include "phonebook.h"
 
 #include <time.h>
 
 /* === START UP OF THE APPLICATION === */
 void
-launch_manually(){
+launch_manually(phone_book_t* phonebook){
     header();
 
     printf(":: WELCOME TO PHONE BOOK (MINI) APPLICATION ::\n");
@@ -19,20 +20,20 @@ launch_manually(){
 
     switch (option){
         case 'A': 
-            add();
+            add(phonebook);
             break;
         case 'L':
-            list();
+            list(phonebook);
             break;
         case 'S':
-            save();
+            save(phonebook);
             break;
         case 'E':
             dismiss();
             break;    
         default:
             printf("Invalid option!\n");
-            launch_manually();
+            launch_manually(phonebook);
             break;
     }
 }
@@ -53,8 +54,8 @@ header(){
 void 
 dismiss(){
     time_t t;
-	time(&t);
-	printf("\n\t\tData e tempo: %s\n", ctime(&t));
+    time(&t);
+    printf("\n\t\tData e tempo: %s\n", ctime(&t));
     printf("\t\tTHANK YOU FOR USING MY PROGRAM :) %s\n", ctime(&time));
     printf("\t\tCopyright© ComSys ELTE 2022, Alfredo Martins (Student) & Dr. Brunner Tibor (Teacher)\n");
     exit(0);
@@ -62,20 +63,41 @@ dismiss(){
 
 /* === INSERT PHONE === */
 void  
-add(){
+add(phone_book_t* phonebook){
+    printf(":: INSERT PHONE ::");
+    printf("\n\t\tEnter a name (maximum of 30 letters): ");
+    char* name;
+    scanf("%s", name);
 
+    printf("\n\t\tEnter a phone number (maximum of 30 digits or characters): ");
+    char* phone_number;
+    scanf("%s", phone_number);
+
+    if(!insert(&phonebook, name, phone_number)){
+        printf("Error inserting %s : %s\n", name, phone_number);
+    } else{
+        print("\nPhone inserted sucessfully!\n");
+        launch_manually(phonebook);
+    }
 }
 
-/* === LIST ALL THE PHONES ===*/
+/* === LIST ALL THE PHONE ===*/
 void  
-list(){
+list(const phone_book_t* const phonebook){
+    print(":: LIST PHONE BOOK ::");
+    print(phonebook);
 
+    launch_manually(phonebook); /* Go back to the menu */
 }
 
 /* === SAVE THE LIST IN A DEFAULT FILE CALLED "output.dat" ===*/
 void  
-save(){
+save(const phone_book_t* const phonebook){
+    char filename[] = "output.dat";
+    dump(phonebook, filename);
+    printf("\nData saved sucessfully. Please, check a file called %s in the current directory! :) \n", filename);
 
+    launch_manually(phonebook); /* Go back to the menu */
 }
 
 /* === GENERATE A NAME RANDOMDLY BASE OF LETTERS IN ENGLISH ALPHABET === */
@@ -98,9 +120,7 @@ get_random_text_name(){
 char*
 get_random_text_number(){
     char* str = malloc(sizeof(char)*(SIZE_PHONE_NUMBER + 1));
-    str[0] = '+';
-    str[1] = '3';
-    str[2] = '6';
+    str[0] = '+'; str[1] = '3'; str[2] = '6';
 
     for (size_t i = 3; i < SIZE_PHONE_NUMBER; i++) {
         int number = rand()%10;

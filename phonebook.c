@@ -52,7 +52,7 @@ get(const phone_book_t* const phonebook, const char name[]){
 void
 print(const phone_book_t* const phonebook){
     for (size_t i = 0; i < size(phonebook); ++i) {
-        printf("[%zu] - %s : %s\n", (i + 1), phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);  
+        printf("\t\t[%zu] - %s : %s\n", (i + 1), phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);  
     }
 }
 

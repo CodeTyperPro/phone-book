@@ -50,27 +50,30 @@ ___
 ## Screenshots
 
 ### Run in random mode
-1. Single screen
+1. Single screen <br>
    ![Run random mode](screenshots/run_randomly.png)
 
-2. Outputfile
+2. Outputfile<br>
    ![Output of random mode](screenshots/output_random.png)
-
+    <br>
 ### Run manually
-1. Main screen and insertion
+1. Main screen and insertion <br>
    ![Main screen and insertion](screenshots/menu_and_insert.png)
-
-2. Insertion
+    <br>
+2. Insertion <br>
    ![Insertion of a phone](screenshots/insert.png)
-
-3. List
+    <br>
+3. List 
+    <br>
    ![List all the phones](screenshots/list.png)
-
+    <br>
 4. Save
+    <br>
    ![Save of data](screenshots/data_saved.png)
-
+    <br>
 5. Dismiss
+    <br>
    ![Goodbye message](screenshots/dismiss.png)
-
+    <br>
 
 > Solved by: MARTINS Alfredo

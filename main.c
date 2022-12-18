@@ -12,8 +12,8 @@ int main(int argc, char* argv[]){
     phone_book_t phonebook;
 
     if (argc == 2){
-        char instruction[] = "manually";
-        if(strcmp(instruction, argv[2]) == 0){
+        char* instruction[] = {"manually", "-m"};
+        if(strcmp(instruction[0], argv[1]) == 0 || strcmp(instruction[1], argv[1]) == 0){
             printf("Enter the number of phones: ");
             int num_phones;
 

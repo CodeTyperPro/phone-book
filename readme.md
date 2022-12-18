@@ -25,7 +25,7 @@ ___
 ___
 
 ## Instructions
-Run the following command in the linux terminal line:
+Run the following commands in the linux terminal line according to your desire:
 
 1. Random inputs:
     ```
@@ -34,6 +34,10 @@ Run the following command in the linux terminal line:
 3. Manually entered inputs:
     ```
     gcc main.c phonebook.c util.c && ./a.out manually
+    ```
+    or
+    ```
+    gcc main.c phonebook.c util.c && ./a.out -m
     ```
 
 > Solved by: MARTINS Alfredo

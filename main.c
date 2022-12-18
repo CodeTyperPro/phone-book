@@ -5,41 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SIZE_NAME 10
-#define SIZE_PHONE_NUMBER 12
-#define SIZE_PHONES 10
-
-char*
-get_random_text_name(){
-    char* str = malloc(sizeof(char)*(SIZE_NAME + 1));
-    char vowels[] = "aeiou";
-
-    for (size_t i = 0; i < SIZE_NAME; i++) {
-        int number = rand()%26;
-        str[i] = (i % 2 ? 'a' + number : vowels[number%(strlen(vowels))]);
-    }
-
-    str[SIZE_NAME - 1] = '\0';
-
-    return str;
-}
-
-char*
-get_random_text_number(){
-    char* str = malloc(sizeof(char)*(SIZE_PHONE_NUMBER + 1));
-    str[0] = '+';
-    str[1] = '3';
-    str[2] = '6';
-
-    for (size_t i = 3; i < SIZE_PHONE_NUMBER; i++) {
-        int number = rand()%10;
-        str[i] = '0' + number;
-    }
-
-    str[SIZE_PHONE_NUMBER - 1] = '\0';
-
-    return str;
-}
+#define DEFAULT_SIZE_PHONES 10
 
 int main(int argc, char* argv[]){
 
@@ -47,9 +13,9 @@ int main(int argc, char* argv[]){
         char instruction[] = "manually";
         if(strcmp(instruction, argv[2]) == 0){
             launch_manually();
+            return 0;
         } else{
-            print("Something went wrong! Please, check the parameters or contact support.\n");
-            exit(0);
+            print("Command parameter not recognized! Please, check it or contact support. Good luck in the next run! :)\n");
         }
     }
 
@@ -59,10 +25,10 @@ int main(int argc, char* argv[]){
     phone_book_t phonebook;
 
     /* === INIT === */
-    init(&phonebook, SIZE_PHONES);
+    init(&phonebook, DEFAULT_SIZE_PHONES);
 
     /* === FILL === */
-    for (int i = 0; i<SIZE_PHONES; ++i) {
+    for (int i = 0; i<DEFAULT_SIZE_PHONES; ++i) {
         
         char* name;
         name = get_random_text_name();

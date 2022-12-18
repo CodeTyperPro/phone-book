@@ -1,6 +1,5 @@
 # PHONE BOOK
 
-
 1. Create a phone book application. A phone book can store a list of (name, phone number) pairs.
 
 2. Represent an entry with a struct of a name and a phone number. The name and the phone number should both be 30 character arrays.
@@ -31,7 +30,7 @@ Run the following commands in the linux terminal line according to your desire:
     ```
     gcc main.c phonebook.c util.c && ./a.out
     ```
-3. Manually entered inputs:
+2. Manually entered inputs:
     ```
     gcc main.c phonebook.c util.c && ./a.out manually
     ```
@@ -39,5 +38,39 @@ Run the following commands in the linux terminal line according to your desire:
     ```
     gcc main.c phonebook.c util.c && ./a.out -m
     ```
+3. To check memory leaks, try:
+    ```
+    gcc main.c phonebook.c util.c -fsanitize=undefined -g && ./a.out
+    ```
+    or
+    ```
+    gcc main.c phonebook.c util.c -fsanitize=undefined -g && ./a.out -m
+    ```
+___
+## Screenshots
+
+### Run in random mode
+1. Single screen
+   ![Run random mode](screenshots/run_randomly.png)
+
+2. Outputfile
+   ![Output of random mode](screenshots/output_random.png)
+
+### Run manually
+1. Main screen and insertion
+   ![Main screen and insertion](screenshots/menu_and_insert.png)
+
+2. Insertion
+   ![Insertion of a phone](screenshots/insert.png)
+
+3. List
+   ![List all the phones](screenshots/list.png)
+
+4. Save
+   ![Save of data](screenshots/data_saved.png)
+
+5. Dismiss
+   ![Goodbye message](screenshots/dismiss.png)
+
 
 > Solved by: MARTINS Alfredo

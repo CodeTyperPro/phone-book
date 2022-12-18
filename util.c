@@ -114,7 +114,7 @@ add(phone_book_t* phonebook){
 /* === LIST ALL THE PHONE ===*/
 void  
 list(phone_book_t* phonebook){
-    printf(":: LIST PHONE BOOK ::\n\n");
+    printf("\n:: LIST PHONE BOOK ::\n\n");
     print(phonebook);
 
     launch_manually(phonebook); /* Go back to the menu */

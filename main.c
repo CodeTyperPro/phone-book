@@ -11,19 +11,21 @@ int main(int argc, char* argv[]){
     /* === USAGE === */
     phone_book_t phonebook;
 
-    if (argc == 2){
+    if (argc == 2) {
         char* instruction[] = {"manually", "-m"};
-        if(strcmp(instruction[0], argv[1]) == 0 || strcmp(instruction[1], argv[1]) == 0){
-            printf("Enter the number of phones: ");
+        if (strcmp(instruction[0], argv[1]) == 0 || strcmp(instruction[1], argv[1]) == 0) {
+            printf("Enter the total number of phones: ");
             int num_phones;
 
             scanf("%d", &num_phones);
+            fgetc(stdin); /* Remove enter in the buffer. */
+
             init(&phonebook, num_phones);
 
             launch_manually(&phonebook);
             destroy(&phonebook);
             return 0;
-        } else{
+        } else {
             printf("Command parameter not recognized! Please, check it or contact support. Good luck in the next run! :)\n");
         }
     }

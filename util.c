@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /* === START UP OF THE APPLICATION === */
 void
@@ -12,14 +13,16 @@ launch_manually(phone_book_t* phonebook){
 
     printf(":: WELCOME TO PHONE BOOK (MINI) APPLICATION ::\n");
     printf("OPTIONS: \n");
-    printf("\t:: [A] : Add  - Insert new phone ::\n");
-    printf("\t:: [L] : List - Total number of security guards ::\n");
-    printf("\t:: [S] : Save - Workplaces with higher number of violent incidents ::\n");
-    printf("\t:: [E] : Exit - Exist the application ::\n");
+    printf("\t:: [A] => Add  - Insert new phone ::\n");
+    printf("\t:: [L] => List - List all the phones ::\n");
+    printf("\t:: [S] => Save - Save the phones in a text file ::\n");
+    printf("\t:: [E] => Exit - Exit the application ::\n");
 
-    printf("\tEnter the operation: ");
+    printf("\n\tEnter the operation: ");
     char option;
-    option = getchar();
+    scanf("%c", &option);
+    option = toupper(option);
+    fgetc(stdin); /* Remove enter in the buffer. */
 
     switch (option){
         case 'A': 
@@ -35,7 +38,7 @@ launch_manually(phone_book_t* phonebook){
             dismiss();
             break;    
         default:
-            printf("Invalid option!\n");
+            printf("\nInvalid option!\n");
             launch_manually(phonebook);
             break;
     }
@@ -48,7 +51,7 @@ header(){
     printf("\n\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb PHONE BOOK \xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\n");
     printf("=================================================\n");
     printf("Student: MARTINS Alfredo | HEIOPO\n");
-    printf("==================================================\n");
+    printf("=================================================\n");
 }
 
 /* === GOODBYE MESSAGE AND RECOGNITION === */
@@ -56,30 +59,48 @@ void
 dismiss(){
     time_t curtime;
     time(&curtime);
-    printf("\t\tTHANK YOU FOR USING MY PROGRAM :) %s\n", ctime(&curtime));
-    printf("\t\tCopyright© ComSys ELTE 2022, Alfredo Martins (Student) & Dr. Brunner Tibor (Teacher)\n");
+    printf("\n\tTHANK YOU FOR USING MY PROGRAM :) %s\n", ctime(&curtime));
+    printf("\tCopyright© Imperative Programming ELTE 2022, Alfredo Martins (Student) & Dr. Brunner Tibor (Professor)\n");
 }
 
 /* === INSERT PHONE === */
 void  
 add(phone_book_t* phonebook){
-    printf(":: INSERT PHONE ::");
-    printf("\n\t\tEnter a name (maximum of 30 letters): ");
-    char* name;
-    scanf("%s", name);
-
-    while(strlen(name) > 30){
-        printf("\n\t\tEnter a name (maximum of 30 letters): ");
-        scanf("%s", name);
+    printf("\n:: INSERT PHONE ::");
+    printf("\nEnter a name (maximum of 30 digits or characters): ");
+    char name[256];
+    char c;
+    size_t index = 0;
+    while ((c = getchar()) != '\n') {
+        name[index++] = c;
     }
 
-    printf("\n\t\tEnter a phone number (maximum of 30 digits or characters): ");
-    char* phone_number;
-    scanf("%s", phone_number); 
+    name[index] = '\0';
+
+    while(strlen(name) > 30){
+        printf("\nEnter a name (maximum of 30 digits or characters): ");
+        index = 0;
+        while ((c = getchar()) != '\n') {
+            name[index++] = c;
+        }
+        name[index] = '\0';
+    }
+
+    printf("Enter a phone number (maximum of 30 digits or characters): ");
+    char phone_number[256];
+    index = 0;
+    while ((c = getchar()) != '\n') {
+        phone_number[index++] = c;
+    }
+    phone_number[index] = '\0';
     
-    while(strlen(phone_number) > 30){
-        printf("\n\t\tEnter a name (maximum of 30 letters): ");
-        scanf("%s", phone_number);
+    while(!is_phone_number(phone_number)){
+        printf("Enter a phone number (maximum of 30 digits or characters): ");    
+        index = 0;
+        while ((c = getchar()) != '\n') {
+            phone_number[index++] = c;
+        }
+        phone_number[index] = '\0';
     }
 
     if(!insert(phonebook, name, phone_number)){
@@ -93,7 +114,7 @@ add(phone_book_t* phonebook){
 /* === LIST ALL THE PHONE ===*/
 void  
 list(phone_book_t* phonebook){
-    printf(":: LIST PHONE BOOK ::");
+    printf(":: LIST PHONE BOOK ::\n\n");
     print(phonebook);
 
     launch_manually(phonebook); /* Go back to the menu */
@@ -138,4 +159,18 @@ get_random_text_number(){
     str[SIZE_PHONE_NUMBER - 1] = '\0';
 
     return str;
+}
+
+/* === CHECK WHETHER OR NOT A GIVEN INPUT IS A PHONE NUMBER === */
+bool
+is_phone_number(char str[]) {
+    if(strlen(str) > 30 || strlen(str) < 5)
+        return false;
+    
+    bool is_okay = str[0] == '+';
+    for (size_t index = 1; str[index] != '\0'; index++){
+        is_okay = is_okay && (str[index] >= '0' && str[index] <= '9');
+    }
+
+    return is_okay;
 }

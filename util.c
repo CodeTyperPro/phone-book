@@ -71,7 +71,7 @@ dismiss(){
 void  
 add(phone_book_t* phonebook){
     printf("\n:: INSERT PHONE ::");
-    printf("\nEnter a name (maximum of 30 digits or characters): ");
+    printf("\nEnter a valid name (maximum of 30 digits or characters): ");
     char name[256];
     char c;
     size_t index = 0;
@@ -82,7 +82,7 @@ add(phone_book_t* phonebook){
     name[index] = '\0';
 
     while(strlen(name) > 30){
-        printf("\nEnter a name (maximum of 30 digits or characters): ");
+        printf("\nEnter a valid name (maximum of 30 digits or characters): ");
         index = 0;
         while ((c = getchar()) != '\n') {
             name[index++] = c;
@@ -90,7 +90,7 @@ add(phone_book_t* phonebook){
         name[index] = '\0';
     }
 
-    printf("Enter a phone number (maximum of 30 digits or characters): ");
+    printf("Enter a valid phone number (maximum of 30 digits or characters): ");
     char phone_number[256];
     index = 0;
     while ((c = getchar()) != '\n') {
@@ -99,7 +99,7 @@ add(phone_book_t* phonebook){
     phone_number[index] = '\0';
     
     while(!is_phone_number(phone_number)){
-        printf("Enter a phone number (maximum of 30 digits or characters): ");    
+        printf("Enter a valid phone number (maximum of 30 digits or characters): ");    
         index = 0;
         while ((c = getchar()) != '\n') {
             phone_number[index++] = c;
@@ -108,7 +108,7 @@ add(phone_book_t* phonebook){
     }
 
     if(!insert(phonebook, name, phone_number)){
-        printf("Error inserting %s : %s\n", name, phone_number);
+        printf("Error inserting %s : %s. Please, check If maximu capacity was reached.\n", name, phone_number);
     } else{
         printf("\nPhone inserted sucessfully!\n");
     }

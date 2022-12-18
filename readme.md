@@ -54,12 +54,12 @@ ___
    <br>
    ![Run random mode](screenshots/run_randomly.png)
    <br>
-2. Outputfile
+2. Output file
     <br>
     ![Output of random mode](screenshots/output_random.png)
     <br>
 ### Run manually
-1. Main screen and insertion
+1. Main(menu) screen
     <br>
     ![Main screen and insertion](screenshots/menu.png)
     <br>

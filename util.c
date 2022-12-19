@@ -25,7 +25,7 @@ launch_manually(phone_book_t* phonebook){
     option = toupper(option);
     fgetc(stdin); /* Remove enter in the buffer. */
 
-    switch (option){
+    switch (option) {
         case 'A': 
             add(phonebook);
             break;
@@ -81,7 +81,7 @@ add(phone_book_t* phonebook){
 
     name[index] = '\0';
 
-    while(strlen(name) > 30){
+    while(strlen(name) > 30) {
         printf("\nEnter a valid name (maximum of 30 digits or characters): ");
         index = 0;
         while ((c = getchar()) != '\n') {
@@ -98,7 +98,7 @@ add(phone_book_t* phonebook){
     }
     phone_number[index] = '\0';
     
-    while(!is_phone_number(phone_number)){
+    while(!is_phone_number(phone_number)) {
         printf("Enter a valid phone number (maximum of 30 digits or characters): ");    
         index = 0;
         while ((c = getchar()) != '\n') {
@@ -107,7 +107,7 @@ add(phone_book_t* phonebook){
         phone_number[index] = '\0';
     }
 
-    if(!insert(phonebook, name, phone_number)){
+    if(!insert(phonebook, name, phone_number)) {
         printf("Error inserting %s : %s. Please, check If maximu capacity was reached.\n", name, phone_number);
     } else{
         printf("\nPhone inserted sucessfully!\n");
@@ -200,7 +200,7 @@ is_phone_number(char str[]) {
         return false;
     
     bool is_okay = str[0] == '+';
-    for (size_t index = 1; str[index] != '\0'; index++){
+    for (size_t index = 1; str[index] != '\0'; index++) {
         is_okay = is_okay && (str[index] >= '0' && str[index] <= '9');
     }
 

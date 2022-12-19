@@ -125,7 +125,7 @@ list(phone_book_t* phonebook){
     launch_manually(phonebook); /* Go back to the menu */
 }
 
-/* === SEARCH FOR A PHONE NUMBER OF A GIVEN NAME ===*/
+/* === SEARCH FOR THE PHONE NUMBER OF A GIVEN NAME ===*/
 void
 search(phone_book_t* phonebook){
     printf("\n:: SEARCH OF A PHONE NUMBER'S NAME ::\n\n");
@@ -161,7 +161,7 @@ save(phone_book_t* phonebook){
     launch_manually(phonebook); /* Go back to the menu */
 }
 
-/* === GENERATE A NAME RANDOMDLY BASE OF LETTERS IN ENGLISH ALPHABET === */
+/* === GENERATE A NAME RANDOMLY BASED ON LETTERS IN ENGLISH ALPHABET === */
 char*
 get_random_text_name(){
     char* str = malloc(sizeof(char)*(SIZE_NAME + 1));

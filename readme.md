@@ -42,9 +42,17 @@ Run the following commands in the linux terminal line according to your desire:
     ```
     gcc main.c phonebook.c util.c -fsanitize=undefined -g && ./a.out
     ```
-    or
     ```
     gcc main.c phonebook.c util.c -fsanitize=undefined -g && ./a.out -m
+    ```
+    ```
+    gcc main.c phonebook.c util.c -fsanitize=leak && ./a.out -m
+    ```
+    ```
+    gcc main.c phonebook.c util.c -g && ./a.out -m
+    ```
+    ```
+    gdb ./a.out
     ```
 ___
 ## Screenshots

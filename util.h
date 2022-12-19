@@ -22,6 +22,6 @@ void  save(phone_book_t* phonebook);
 /* === AUXILIARY FUNCTIONS === */
 char* get_random_text_name();
 char* get_random_text_number();
-bool is_phone_number();
+bool  is_phone_number();
 
 #endif

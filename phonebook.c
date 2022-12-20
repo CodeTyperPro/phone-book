@@ -24,15 +24,31 @@ is_full(const phone_book_t* const phonebook){
 bool
 insert(phone_book_t* phonebook, char name[], char phone_number[]){
     if (!is_full(phonebook)) {
-        phone_t p;
-        strcpy(p.name, name);
-        strcpy(p.phone_number, phone_number);
 
-        phonebook->items_ptr[phonebook->num_elems++] = p;
+        int pos = at(phonebook, name);
+        if(pos == -1){
+            phone_t p;
+            strcpy(p.name, name);
+            strcpy(p.phone_number, phone_number);
+            phonebook->items_ptr[phonebook->num_elems++] = p;
+        } else{
+            // Already exists
+            strcpy(phonebook->items_ptr[pos].phone_number, phone_number);
+        }
+
         return true;
     }
 
     return false;
+}
+
+int
+at(const phone_book_t* const phonebook, const char name[]){
+    for (size_t i = 0; i < size(phonebook); ++i) {
+        if (strcmp(phonebook->items_ptr[i].name, name) == 0){
+            return i;
+        }
+    } return -1;
 }
 
 size_t
@@ -49,10 +65,18 @@ get(const phone_book_t* const phonebook, const char name[]){
     } return NULL;
 }
 
+bool is_empty(const phone_book_t* const phonebook){
+    return size(phonebook) == 0;
+}
+
 void
 print(const phone_book_t* const phonebook){
-    for (size_t i = 0; i < size(phonebook); ++i) {
-        printf("\t[%zu] - %s : %s\n", (i + 1), phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);  
+    if (is_empty(phonebook)) {
+        printf("\tEmpty! Unfortunetly there is no phone to print, sorry. Please, choose add operation to insert.\n");
+    } else{
+        for (size_t i = 0; i < size(phonebook); ++i) {
+            printf("\t[%zu] - %s : %s\n", (i + 1), phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);  
+        }        
     }
 }
 

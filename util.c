@@ -71,7 +71,7 @@ dismiss(){
 void  
 add(phone_book_t* phonebook){
     printf("\n:: INSERT PHONE ::");
-    printf("\nEnter a valid name (maximum of 30 digits or characters): ");
+    printf("\nEnter a valid name (maximum of 29 digits or characters): ");
     char name[MAX_LEN];
     char c;
     size_t index = 0;
@@ -81,8 +81,8 @@ add(phone_book_t* phonebook){
 
     name[index] = '\0';
 
-    while(strlen(name) > 30) {
-        printf("\nEnter a valid name (maximum of 30 digits or characters): ");
+    while(strlen(name) >= 30) {
+        printf("\nEnter a valid name (maximum of 29 digits or characters): ");
         index = 0;
         while ((c = getchar()) != '\n') {
             name[index++] = c;
@@ -90,7 +90,7 @@ add(phone_book_t* phonebook){
         name[index] = '\0';
     }
 
-    printf("Enter a valid phone number (maximum of 30 digits or characters): ");
+    printf("Enter a valid phone number (maximum of 29 digits or characters): ");
     char phone_number[MAX_LEN];
     index = 0;
     while ((c = getchar()) != '\n') {
@@ -99,7 +99,7 @@ add(phone_book_t* phonebook){
     phone_number[index] = '\0';
     
     while(!is_phone_number(phone_number)) {
-        printf("Enter a valid phone number (maximum of 30 digits or characters): ");    
+        printf("Enter a valid phone number (maximum of 29 digits or characters): ");    
         index = 0;
         while ((c = getchar()) != '\n') {
             phone_number[index++] = c;
@@ -108,7 +108,7 @@ add(phone_book_t* phonebook){
     }
 
     if(!insert(phonebook, name, phone_number)) {
-        printf("Error inserting %s : %s. Please, check If maximu capacity was reached.\n", name, phone_number);
+        printf("\nError inserting %s : %s. Please, check If maximum capacity was reached.\n", name, phone_number);
     } else{
         printf("\nPhone inserted sucessfully!\n");
     }
@@ -132,15 +132,25 @@ search(phone_book_t* phonebook){
     
     print(phonebook);
 
-    printf("\nEnter a name (maximum of 30 digits or characters): ");
-    char name[256];
+    printf("\nEnter a name (maximum of 29 digits or characters): ");
+    char name[MAX_LEN];
     char c;
     size_t index = 0;
     while ((c = getchar()) != '\n') {
         name[index++] = c;
     }
-
+    
     name[index] = '\0';
+    
+    while(strlen(name) >= 30) {
+        printf("\nEnter a valid name (maximum of 29 digits or characters): ");
+        index = 0;
+        while ((c = getchar()) != '\n') {
+            name[index++] = c;
+        }
+        name[index] = '\0';
+    }
+
     const char* result;
     result = get(phonebook, name);
     if (result == NULL) {
@@ -174,7 +184,7 @@ get_random_text_name(char* str){
     str[SIZE_NAME - 1] = '\0';
 }
 
-/* === GENERATE A PHONE NUMBER RANDOMDLYWITH PREFIX +366 === */
+/* === GENERATE A PHONE NUMBER RANDOMDLY WITH PREFIX +36 === */
 void
 get_random_text_number(char* str){
     str[0] = '+'; str[1] = '3'; str[2] = '6';
@@ -190,7 +200,7 @@ get_random_text_number(char* str){
 /* === CHECK WHETHER OR NOT A GIVEN INPUT IS A PHONE NUMBER === */
 bool
 is_phone_number(char str[]) {
-    if(strlen(str) > 30 || strlen(str) < 5)
+    if(strlen(str) >= 30 || strlen(str) < 5)
         return false;
     
     bool is_okay = str[0] == '+';

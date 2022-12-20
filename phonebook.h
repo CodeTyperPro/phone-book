@@ -7,12 +7,12 @@
 #define MAX_LEN 30
 
 typedef struct phone{
-    char name[MAX_LEN];       /* Extra place for '\0' */
+    char name[MAX_LEN];         /* Extra (+1) place for terminator '\0' was not specified */
     char phone_number[MAX_LEN];
 } phone_t;
 
 typedef struct phone_book{
-    size_t num_elems, size; // ?
+    size_t num_elems, size;
     phone_t* items_ptr;
 } phone_book_t;
 

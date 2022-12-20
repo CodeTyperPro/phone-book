@@ -7,7 +7,7 @@
 
 #define DEFAULT_SIZE_PHONES 10
 
-/* Find instructions in the link: https://github.com/CodeTyperPro/phone-book */
+/* Find instructions in the link: https://github.com/CodeTyperPro/phone-book for advanced (manually) mode */
 
 int main(int argc, char* argv[]){
     /* === USAGE === */

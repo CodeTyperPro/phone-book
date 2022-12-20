@@ -38,10 +38,10 @@ int main(int argc, char* argv[]){
     /* === FILL === */
     for (int i = 0; i<DEFAULT_SIZE_PHONES; ++i) {
         
-        char* name;
-        name = get_random_text_name();
-        char* phone_number;
-        phone_number = get_random_text_number();
+        char name[MAX_LEN + 1];
+        get_random_text_name(name);
+        char phone_number[MAX_LEN + 1];
+        get_random_text_number(phone_number);
 
         if(!insert(&phonebook, name, phone_number)){
             printf("Error inserting %s : %s\n", name, phone_number);

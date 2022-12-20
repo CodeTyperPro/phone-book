@@ -72,7 +72,7 @@ void
 add(phone_book_t* phonebook){
     printf("\n:: INSERT PHONE ::");
     printf("\nEnter a valid name (maximum of 30 digits or characters): ");
-    char name[256];
+    char name[MAX_LEN + 1];
     char c;
     size_t index = 0;
     while ((c = getchar()) != '\n') {
@@ -91,7 +91,7 @@ add(phone_book_t* phonebook){
     }
 
     printf("Enter a valid phone number (maximum of 30 digits or characters): ");
-    char phone_number[256];
+    char phone_number[MAX_LEN + 1];
     index = 0;
     while ((c = getchar()) != '\n') {
         phone_number[index++] = c;
@@ -162,9 +162,8 @@ save(phone_book_t* phonebook){
 }
 
 /* === GENERATE A NAME RANDOMLY BASED ON LETTERS IN ENGLISH ALPHABET === */
-char*
-get_random_text_name(){
-    char* str = malloc(sizeof(char)*(SIZE_NAME + 1));
+void
+get_random_text_name(char* str){
     char vowels[] = "aeiou";
 
     for (size_t i = 0; i < SIZE_NAME; i++) {
@@ -173,14 +172,11 @@ get_random_text_name(){
     }
 
     str[SIZE_NAME - 1] = '\0';
-
-    return str;
 }
 
 /* === GENERATE A PHONE NUMBER RANDOMDLYWITH PREFIX +366 === */
-char*
-get_random_text_number(){
-    char* str = malloc(sizeof(char)*(SIZE_PHONE_NUMBER + 1));
+void
+get_random_text_number(char* str){
     str[0] = '+'; str[1] = '3'; str[2] = '6';
 
     for (size_t i = 3; i < SIZE_PHONE_NUMBER; i++) {
@@ -189,8 +185,6 @@ get_random_text_number(){
     }
 
     str[SIZE_PHONE_NUMBER - 1] = '\0';
-
-    return str;
 }
 
 /* === CHECK WHETHER OR NOT A GIVEN INPUT IS A PHONE NUMBER === */

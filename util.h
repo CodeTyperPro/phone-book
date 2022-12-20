@@ -20,8 +20,8 @@ void  search(phone_book_t* phonebook);
 void  save(phone_book_t* phonebook);
 
 /* === AUXILIARY FUNCTIONS === */
-char* get_random_text_name();
-char* get_random_text_number();
+void  get_random_text_name(char* str);
+void  get_random_text_number(char* str);
 bool  is_phone_number();
 
 #endif

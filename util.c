@@ -166,7 +166,7 @@ void
 get_random_text_name(char* str){
     char vowels[] = "aeiou";
 
-    for (size_t i = 0; i < SIZE_NAME; i++) {
+    for (size_t i = 0; i < SIZE_NAME; ++i) {
         int number = rand()%26;
         str[i] = (i % 2 ? 'a' + number : vowels[number%(strlen(vowels))]);
     }
@@ -179,7 +179,7 @@ void
 get_random_text_number(char* str){
     str[0] = '+'; str[1] = '3'; str[2] = '6';
 
-    for (size_t i = 3; i < SIZE_PHONE_NUMBER; i++) {
+    for (size_t i = 3; i < SIZE_PHONE_NUMBER; ++i) {
         int number = rand()%10;
         str[i] = '0' + number;
     }
@@ -194,7 +194,7 @@ is_phone_number(char str[]) {
         return false;
     
     bool is_okay = str[0] == '+';
-    for (size_t index = 1; str[index] != '\0'; index++) {
+    for (size_t index = 1; str[index] != '\0'; ++index) {
         is_okay = is_okay && (str[index] >= '0' && str[index] <= '9');
     }
 

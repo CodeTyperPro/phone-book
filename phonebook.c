@@ -42,7 +42,7 @@ size(const phone_book_t* const phonebook){
 
 const char*
 get(const phone_book_t* const phonebook, const char name[]){
-    for (size_t i = 0; i < size(phonebook); i++) {
+    for (size_t i = 0; i < size(phonebook); ++i) {
         if (strcmp(phonebook->items_ptr[i].name, name) == 0){
             return phonebook->items_ptr[i].phone_number;
         }

@@ -72,7 +72,7 @@ void
 add(phone_book_t* phonebook){
     printf("\n:: INSERT PHONE ::");
     printf("\nEnter a valid name (maximum of 30 digits or characters): ");
-    char name[MAX_LEN + 1];
+    char name[MAX_LEN];
     char c;
     size_t index = 0;
     while ((c = getchar()) != '\n') {
@@ -91,7 +91,7 @@ add(phone_book_t* phonebook){
     }
 
     printf("Enter a valid phone number (maximum of 30 digits or characters): ");
-    char phone_number[MAX_LEN + 1];
+    char phone_number[MAX_LEN];
     index = 0;
     while ((c = getchar()) != '\n') {
         phone_number[index++] = c;

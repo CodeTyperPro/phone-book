@@ -7,6 +7,8 @@
 
 #define DEFAULT_SIZE_PHONES 10
 
+/* Find instructions in the link: https://github.com/CodeTyperPro/phone-book */
+
 int main(int argc, char* argv[]){
     /* === USAGE === */
     phone_book_t phonebook;
@@ -32,15 +34,17 @@ int main(int argc, char* argv[]){
 
     srand(time(NULL));
 
+    /* === RANDOM MODE === */
+
     /* === INIT === */
     init(&phonebook, DEFAULT_SIZE_PHONES);
 
     /* === FILL === */
     for (int i = 0; i<DEFAULT_SIZE_PHONES; ++i) {
         
-        char name[MAX_LEN + 1];
+        char name[MAX_LEN];
         get_random_text_name(name);
-        char phone_number[MAX_LEN + 1];
+        char phone_number[MAX_LEN];
         get_random_text_number(phone_number);
 
         if(!insert(&phonebook, name, phone_number)){

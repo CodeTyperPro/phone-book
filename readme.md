@@ -47,12 +47,15 @@ Run the following commands in the linux terminal line according to your desire:
     ```
     ```
     gcc main.c phonebook.c util.c -fsanitize=leak && ./a.out -m
+    ```      
+    ```
+    gcc main.c phonebook.c util.c -fsanitize=leak && ./a.out
     ```    
     ```
     gcc main.c phonebook.c util.c -fsanitize=address && ./a.out
     ```
     ```
-    gcc main.c phonebook.c util.c -g && ./a.out -m
+    gcc main.c phonebook.c util.c -g && ./a.out
     ```
     ```
     gdb ./a.out

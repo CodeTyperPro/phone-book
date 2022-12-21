@@ -86,7 +86,6 @@ dump(const phone_book_t* const phonebook, const char file_name[]){
     output = fopen(file_name, "w+");
     if (output == NULL) {
         printf("An error occurred while opening the file/it does not exist. Please, check it!\n");
-        exit(0);
     } else {            
         for (size_t i = 0; i < size(phonebook); ++i) {
             fprintf(output, "%s : %s\n", phonebook->items_ptr[i].name, phonebook->items_ptr[i].phone_number);
